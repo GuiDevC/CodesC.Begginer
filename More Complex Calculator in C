@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main(void){
+    // operators = "division, multiplication, sum, subtraction, mod, square, Pi";
+    // x = (num1²) + (num2²); m = mod; Pi = (num1+num2)*3.14 , x!, x raised to the y;
+    // z = x^y; ! = x!; P = Pi;
+
+    double num1, num2, result = 0;
+    int num3, num4;
+    char operator = '\0';
+    char continued = 'y', clear;
+
+    while(continued == 'y'){
+        printf("Enter the first number: ");
+        scanf("%lf", &num1);
+        
+        printf("Enter the second number: ");
+        scanf("%lf", &num2);
+
+        printf("Enter the operator: ( / , * , - , + , x , m, P, !, z): ");
+        scanf(" %c", &operator);
+
+        switch(operator){
+            case '/':
+                result = num1 / num2;
+                printf("\nThe result is %.2lf", result);
+                break;
+
+            case '*':
+                result = num1 * num2;
+                printf("\nThe result is %.2lf", result);
+                break;
+            
+            case 'x':
+                result = (num1*num1) + (num2*num2);
+                printf("\nThe result is %.2lf", result);
+                break;
+
+            case '-':
+                result = num1-num2;
+                printf("\nThe result is %.2lf", result);
+                break;
+
+            case '+':
+                result = num1+num2;
+                printf("\nThe result is %.2lf", result);
+                break;
+
+            case 'P':
+                result = (num1+num2)*3.14;
+                printf("\nThe result is %.2lf", result);
+                break;
+            
+            case '!':
+                result = num1+num2;
+                for(int i = 1; i <= result; i++){
+                    result = result*i;
+                    printf("\nThe result is %.2lf", result);
+                }
+                break;
+
+            case 'z':
+                double resulta = pow(num1,num2);
+                printf("\nThe result is %.2lf", resulta);
+                break;
+            
+            case 'm':
+                system("clear");
+                printf("\nYou enter in a easter egg, please, enter the first number again: ");
+                scanf("%d", &num3);
+
+                printf("Enter the second number, please: ");
+                scanf("%d", &num4);
+
+                result = num3%num4;
+                printf("The result in easter egg is %.2lf", result);
+                break;
+        }
+
+        printf("\nYou want to use the calculator? (y,n): ");
+        scanf(" %c", &continued);
+
+        printf("\nYou want to clear the calculos? (y,n): ");
+        scanf(" %c", &clear);
+
+        if(clear == 'y'){
+            system("clear");
+        }
+    }
+    return 0;
+}
