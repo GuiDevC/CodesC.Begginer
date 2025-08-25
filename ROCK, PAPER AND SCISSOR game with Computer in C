@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int getRobot(){
+    return (rand() % 3) + 1;
+}
+
+int getUser(){
+    int movement;
+    do{
+        printf("1. Rock\n");
+        printf("2. Paper\n");
+        printf("3. Scissor\n");
+        printf("What is your your movement? ");
+        scanf("%d", &movement);
+    }while(movement < 1 || movement > 3);
+
+    return movement;
+}
+
+void winner(int user, int computer){
+    
+    if(user == computer){
+        printf("Tie!");
+    }
+    else if(user == 1 && computer == 3){
+        printf("You win! ");
+    }
+    else if(user == 2 && computer == 1){
+        printf("You win! ");
+    }
+    else if(user == 3 && computer == 2){
+        printf("You win! ");
+    }
+    else{
+        printf("Robot wins! ");
+    }
+
+}
+
+int main(void){
+
+    srand(time(NULL));
+    printf("Welcome to the Rock, Paper, Scissor Game!\n");
+    int robotChoose = getRobot(), manChoose = getUser();
+
+    printf("\nThe Match: ");
+    switch(manChoose){
+        case 1:
+            printf("\nYou choose Rock!");
+            break;
+        case 2:
+            printf("\nYou choose Paper! ");
+            break;
+        case 3:
+            printf("\nYou choose Scissor! ");
+            break;
+    }
+
+    switch(robotChoose){
+        case 1:
+            printf("\nRobot choose Rock! \n");
+            break;
+        case 2:
+            printf("\nRobot choose Paper! \n");
+            break;
+        case 3:
+            printf("\nRobot choose Scissor! \n");
+            break;
+    }
+
+    winner(manChoose, robotChoose);
+    
+}
