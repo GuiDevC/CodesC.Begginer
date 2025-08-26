@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <string.h>
+
+void checkBalance(float balance, char currency[10]){
+    printf("\nBalance: %s %.2f", currency, balance);
+}
+
+float withdraw(float balance, char currency[10]){
+    float money;
+    printf("\nEnter the amount of money that you want to withdraw: ");
+    scanf("%f", &money);
+
+    if(money > balance){
+        printf("\nInsuficient money in your bank amount is %s %.2f ", currency, balance);
+        return 0.0f;
+    }
+    else if(money < 0){
+        printf("\nInvalid amount of money, enter again: ");
+        return 0.0f;
+    }
+    else{
+        printf("\nSucessfully withdrew %s %.2f", currency, money);
+        return money;
+    }
+}
+
+float deposit(char currency[10]){
+    float money;
+    printf("\nEnter the amount to deposit: %s ", currency);
+    scanf("%f", &money);
+    do{
+        if(money < 0){
+            printf("\nEnter the amount again, negative doesn't counts: ");
+            return 0.0f;
+        }
+
+    }while(money < 0);
+    if(money > 0){
+        printf("\nSucessfully deposited %s %.2f", currency, money);
+        return money;
+    }
+}
+
+int main(void){
+    float balance = 0.0;
+    int choice;
+    char currency[10];
+
+    printf("Welcome to Nomad! \n");
+    printf("What is your currency? ");
+    fgets(currency, sizeof(currency), stdin);
+    currency[strlen(currency) - 1] = '\0';
+
+    do{
+        printf("\nSelect an option: \n");
+        printf(" 1. Check Balance \n");
+        printf(" 2. Deposit Money \n");
+        printf(" 3. Withdraw Money \n");
+        printf(" 4. Exit \n");
+
+        printf("Enter your option: ");
+        scanf("%d", &choice);
+
+        switch(choice){
+            case 1:
+                checkBalance(balance, currency);
+                break;
+            case 2:
+                balance += deposit(currency);
+                break;
+            case 3:
+                balance -= withdraw(balance, currency);
+                break;
+            case 4:
+                printf("\nThanks for using the bank! ");
+                break;
+            default:
+                printf("\nInvalid choice. ");        
+            }
+    }while(choice != 4);
+
+    return 0;   
+}
