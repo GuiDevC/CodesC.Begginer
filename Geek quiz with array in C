@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <ctype.h>
+
+//This is not clean code at all
+
+int main(void){
+    char questions[][175] = {"The Pirate Bay was created in ", 
+                            "\nWhat programing language is the oldest? ", 
+                            "\nWhat is the reason that makes Linus Torvalds create Linux?", 
+                            "\nHardware is the pyshical part of computer and software is the apps, OS and CPU. "};
+
+    char answers[][175] = {"\nA. 2003\nB. 2006\nC. 2002\nD. 2008\nE. 2002",
+                            "\nA. Delphi\nB. Java\nC. Javascript\nD. Python\nE. C++", 
+                            "\nA. To make open source, paid and safe OS\nB. To get money\nC. To give everyone access open source and free\nD. To destroy Windows and get fame\nE. Because Linus was bored", 
+                            "\nA. True\nB. False"};
+                            
+    char correctAnswers[] = {'A', 'E', 'C', 'B'};
+    int questionCount = sizeof(questions) / sizeof(questions[0]);
+
+    int score = 0;
+    char try = '\0';
+
+    printf("Welcome to geek quiz! The quiz have 4 questions to answer with general knowledge in IT. \n");
+    
+    for(int i = 0; i < questionCount; i++){
+        printf("%s", questions[i]);
+        printf("%s", answers[i]);
+        printf("\nEnter your choice: ");
+        scanf(" %c", &try);
+
+        try = toupper(try);
+        if(try == correctAnswers[i]){
+            printf("\nCorrect! ");
+            score++;
+        }
+        else{
+            printf("\nIncorrect");
+        }
+    }
+
+    printf("\nYou answered %d/4 correct. ", score);
+
+    return 0;
+}
