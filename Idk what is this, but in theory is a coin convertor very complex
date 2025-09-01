@@ -1,0 +1,177 @@
+#include <stdio.h>
+
+typedef enum{
+    US$ = 1, EUR = 2, R$ = 3, JPY = 4, ARS = 5
+}coin;
+
+typedef enum{
+    Us$ = 1, Eur = 2, r$ = 3, Jpy = 4, Ars = 5
+}estrangeira;
+
+void message(){
+    printf("\nCurrencies supported below: ");
+    printf("\nUS$ - Dollar");
+    printf("\nEUR = Euro");
+    printf("\nR$ - Reais");
+    printf("\nJPY = Yen");
+    printf("\nARS - PesoArgentino");
+}
+
+float taxDol(coin natal, estrangeira exterior){
+    float value;
+    printf("Value: ");
+    scanf("%f", &value);
+
+    switch(exterior){
+        case Eur:
+            value *= 0.85;
+            break;
+        case r$:
+            value *= 5.42;
+            break;
+        case Jpy:
+            value *= 146.87;
+            break;
+        case Ars:
+            value *= 1317.24;
+            break;
+    }
+
+    return value;
+}
+
+float taxEuro(coin natal, estrangeira exterior){
+    float value; 
+    printf("Value: ");
+    scanf("%f", &value);
+
+    switch(exterior){
+        case Us$:
+            value *= 1.17;
+            break;
+        case r$:
+            value *= 6.36;
+            break;
+        case Jpy:
+            value *= 173.04;
+            break;
+        case Ars:
+            value *= 1524.28;
+            break;        
+    }
+    return value;
+}
+
+float taxReais(coin natal, estrangeira exterior){
+    float value; 
+    printf("Value: ");
+    scanf(" %f", &value);
+    
+    switch(exterior){
+        case Us$:
+            value *= 0.18;
+            break;
+        case Eur:
+            value *= 0.16;
+            break;
+        case Jpy:
+            value *= 27.11;
+            break;
+        case Ars:
+            value *= 239.77;
+            break;     
+    }
+    return value;
+}
+
+float taxYen(coin natal, estrangeira exterior){
+    float value; 
+    printf("Value: ");
+    scanf("%f", &value);
+
+    switch(exterior){
+        case Us$:
+            value *= 0.0068;
+            break;
+        case Eur:
+            value *=  0.0058;
+            break;
+        case r$:
+            value *= 0.037;
+            break;
+        case Ars:
+            value *= 8.81;     
+            break;     
+    }
+    return value;
+}
+
+float taxARS(coin natal, estrangeira exterior){
+    float value; 
+    printf("Value: ");
+    scanf("%f", &value);
+
+    switch(exterior){
+        case Us$:
+            value *= 0.00076;
+            break;
+        case Eur:
+            value *= 0.00066;
+            break;
+        case r$:
+            value *= 0.0042;
+            break;
+        case Jpy:
+            value *= 0.11;
+            break;     
+    }
+    return value;
+}
+
+int main(void){
+    float value = 0;
+    char choose;
+    estrangeira exterior;
+    coin natal;
+
+    do{
+        message();
+        printf("\nWhat's your currency? ");
+        scanf("%d", &natal);
+        
+        printf("\nWhat currency you want make convertion? ");
+        scanf("%d", &exterior);
+
+        switch(natal){
+            case US$: 
+                value = taxDol(natal, exterior);
+                printf("The value is %.2f ", value);
+                break;
+
+            case EUR:
+                value = taxEuro(natal, exterior);
+                printf("The value is %.2f ", value);
+                break;
+
+            case R$:
+                value = taxReais(natal, exterior);
+                printf("The value is %.2f ", value);
+                break;
+
+            case JPY:
+                value = taxYen(natal, exterior);
+                printf("The value is %.2f ", value);
+                break;
+            
+            case ARS:
+                value = taxARS(natal, exterior);
+                printf("The value is %.2f ", value);
+                break;
+        }
+        printf("\nYou want to continue (y,n)? ");
+        scanf(" %c", &choose);
+
+    }while(choose == 'y');
+
+    return 0;
+}
